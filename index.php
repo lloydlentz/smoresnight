@@ -52,33 +52,8 @@
 		<div class="ans">NO</div>
 		<div id="days">check back in <?php echo $days; ?> days</div>
 		<div class="lazy"><a href="form.php" title="">signup</a></div>
-		<div class="lazy" onclick="show('signup');hide('lazy');">signup</div>
-		<div class="signup">Enter your cell... I'll text you.</div>
-		<div class="signup">
-			<form action="signup.php"><input name="phone" value="phone"><input type="submit" name="submit" value="Text Me"></form>
-			<form>
-				<h1>Material Design Text Input With No Extra Markup</h1>
-				<input placeholder="Username" type="text" required="">
-				<input placeholder="Password" type="password" required="">
-				<button>Submit</button>
-			</form>
-
-			<a class="follow" href="https://twitter.com/mildrenben" target="_blank"><i class="fa fa-twitter"></i>Follow Me</a>
-
-			<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-			<link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
-		</div>
 	</div>
 	<script src="script.js"></script>
-	<script>
-		window.onload = function () {
-		    var fiveMinutes = 60 * 5,
-	        display = document.querySelector('#time');
-	    	// startTimer(fiveMinutes, display);
-		}
-		;
-	</script>
 </body>
 </html>
 <?php 
