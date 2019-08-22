@@ -7,10 +7,29 @@
 		// Use the REST API Client to make requests to the Twilio REST API
 		use Twilio\Rest\Client;
 
+		$number = filter_var($_GET["phone"], FILTER_SANITIZE_NUMBER_INT);
+		$sql = "SELECT * FROM smoresfolks WHERE lower(replace(replace(replace(replace(number,' ',''),'-', ''),'(',''),')','')) = '".preg_replace("/[^0-9]/", "", $number )."'";
+		// echo $sql;
+		// exit();
+
 	if ($_GET["phone"]){
 		try {
 			$number = filter_var($_GET["phone"], FILTER_SANITIZE_NUMBER_INT);
 			//print($number);
+
+			$sql = "SELECT * FROM smoresfolks WHERE lower(replace(replace(replace(replace(number,' ',''),'-', ''),'(',''),')','')) = '".preg_replace("/[^0-9]/", "", $number )."'";
+			//echo $sql;
+
+			$result = $db->query($sql);
+
+
+			if ($result->num_rows > 0) {
+ //				printf("Select returned %d rows.\n", $result->num_rows);
+				$result->close();
+				echo "Hi, I already have you on the list!  Thanks! :)";
+				exit;
+			}
+
 
 			$sql = "Insert into smoresfolks(number) values ('$number')";
 
@@ -47,7 +66,7 @@
 		}
 
 	} else {
-		echo "not sure how you got here.  try that again."
+		echo "not sure how you got here.  try that again.";
 	}
 
 ?>

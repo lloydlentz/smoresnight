@@ -1,8 +1,31 @@
 <?php 
+	//  Set the current date
 	$date = new DateTime('now', new DateTimeZone('America/Chicago'));
-	$nextDate = "2017-06-16";
-	$yes = ($date->format('Y-m-d') ==$nextDate); 
-	if($yes){ ?>
+	//  Define a collection of next dates that smores night should be
+        $nextDates = array(
+        	'2019-09-06',
+        	'2019-08-23',
+        	'2019-08-09',
+                '2019-07-26',
+		'2019-07-12',
+		'2019-06-28',
+		'2019-06-14',
+		'2019-01-01'
+	);
+
+	$nextDate = "";  // placeholder for the next date, to show on page
+	$today = false;  // Set the variable if it is today
+	// Loop through the array of dates and see when the next one will be
+	foreach ($nextDates as $i => $d) {
+		if ($date->format('Y-m-d') == $d) {
+			$today = true;
+		} elseif ($date->format('Y-m-d') < $d ) {
+			$nextDate = $d;
+		}
+	}
+
+	//  What to display if it is TODAY
+	if($today){ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +44,7 @@
 </html>
 
 <?php	
+	//  What to display if it is NOT TODAY
  	} else {
 		$now = time(); // or your date as well
 		$your_date = strtotime($nextDate);
@@ -50,8 +74,9 @@
 <body>
 	<div class="flexcontainer column center">
 		<div class="ans">NO</div>
-		<div id="days">check back in <?php echo $days; ?> days</div>
-		<div class="lazy"><a href="form.php" title="">signup</a></div>
+<!-- 		<div id="days">Check back in <?php echo $days; ?> days. </div> -->
+		<div id="days">Next smores night is on <?php echo date("l, M j", strtotime($nextDate)) ?>. </div>
+		<div class="lazy"><a href="form.php" title="">signup to get texts</a></div>
 	</div>
 	<script src="script.js"></script>
 </body>
